@@ -26,13 +26,13 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: 3.6 # optional, default is 3.x
       
-    - name: Setup MSYS2
-      # You may pin to the exact commit or the version.
-      # uses: msys2/setup-msys2@ac10a2ce1afd21103e8ef0a5e30e0d38f2ba9a3b
-      uses: msys2/setup-msys2@v2
-      with:
-        # Update MSYS2 installation through pacman
-        update: true # optional
+#    - name: Setup MSYS2
+#      # You may pin to the exact commit or the version.
+#      # uses: msys2/setup-msys2@ac10a2ce1afd21103e8ef0a5e30e0d38f2ba9a3b
+#      uses: msys2/setup-msys2@v2
+#      with:
+#        # Update MSYS2 installation through pacman
+#        update: true # optional
 
     - name: x64 Build
       # Some projects don't allow in-source building, so create a separate build directory
