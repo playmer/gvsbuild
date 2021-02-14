@@ -34,7 +34,7 @@ jobs:
     - name: x64 Build
       # Some projects don't allow in-source building, so create a separate build directory
       # We'll use this as our working directory for all subsequent commands
-      run: python .\build.py build -p x64 gtk3
+      run: python .\build.py build -p x64 --vs-ver 16 gtk3
       working-directory: ${{github.workspace}}
 
     - name: Zip x64 Release
@@ -44,8 +44,10 @@ jobs:
       with:
         # Filename for archive
         filename: gtk_msvc_x64.zip # default is release.zip
+        # Base path for archive files
+        path: gtk # optional, default is .  
         # Working directory before zipping
-        directory: ./.. # optional, default is .
+        directory: ./../gtk # optional, default is .
 
     - name: Create Release
       id: create_release
@@ -64,6 +66,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./my-artifact.zip
-        asset_name: my-artifact.zip
+        asset_path: ./gtk_msvc_x64.zip
+        asset_name: gtk_msvc_x64.zip
         asset_content_type: application/zip
